@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIIESSJJEEE</title>
+    <style>
+        /* CSS goes here */
+        #evnelope{
+            position: relative;
+            width: 500px;
+            height: 320px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+            top: 150px;
+            background-color: #ff7782;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        
+        .evnelope-wrapper {
+    margin-top: 100px; /* pushes everything down */
+}
+        .front{
+            position: absolute;
+            width: 0;
+            height: 0;
+            z-index: 3;
+        }
+        .flap{
+            border-left: 250px solid transparent;
+            border-right: 250px solid transparent;
+            border-bottom: 85px solid transparent;
+            border-top: 180px solid #ff7782;
+            transform-origin: top;
+        }
+        .pocket{
+            border-left: 250px solid #ffd6e0;
+            border-right: 251px solid #ffd6e0;
+            border-bottom: 180px solid #ffb6c1;
+            border-top: 179px solid transparent;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+        .letter{
+            position: relative;
+            background-color: #fff;
+            width: 95%;
+            font-family: 'Segoe Script', cursive;
+
+            margin-left: auto;
+            margin-right: auto;
+            height: 80%;
+            top: 5%;
+            border-radius: 6px;
+            box-shadow: 0 2px 26px rgba(0,0,0,0.12);
+        }
+        .letter:after{
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: none;
+        }
+        
+        .rainbow-text {
+    font-weight: bold;  /* keeps it bold */
+    background: linear-gradient(
+        135deg,            /* diagonal rainbow */
+        red, orange, yellow, green, blue, indigo, violet, pink, purple
+    );
+    -webkit-background-clip: text;  /* make gradient visible only on text */
+    -webkit-text-fill-color: transparent;
+    display: inline-block;           /* fixes text clipping issues */
+}
+
+       
+        .words {
+    position: absolute;
+    left: 0;              /* start at left edge of the letter */
+    width: 100%;           /* span the full width of the letter */
+    text-align: center;    /* center text inside the div */
+}
+       
+        .words.line1{
+            top: 10%;
+            font-size: 25px;
+            
+        }
+        
+        .words.line2{
+            top: 25%;
+            font-size: 16px;
+             color: #d65d78; 
+        }
+        .words.line3{
+            top: 32%;
+            font-size: 16px;
+            color: #d65d78; 
+        }
+        .words.line4{
+            top: 39%;
+              font-size: 16px;
+               color: #d65d78; 
+        }
+        
+        .words.line5{
+            top: 55%;
+            font-size: 12px;
+             color: #d65d78; 
+        }
+        
+         .words.line6{
+            top: 75%;
+            font-size: 16px;
+             color: #d65d78; 
+        }
+        
+         .words.line7{
+            top: 83%;
+            font-size: 14px;
+             color: #d65d78; 
+        }
+        .open .flap{
+            transform: rotateX(180deg);
+            transition: transform 0.4s ease, z-index 0.6s;
+            z-index: 1;
+        }
+        .close .flap{
+            transform: rotateX(0deg);
+            transition: transform 0.4s 0.6s ease, z-index 1s;
+            z-index: 5;
+        }
+        .close .letter{
+            transform: translateY(0px);
+            transition: transform 0.4s ease, z-index 1s;
+            z-index: 1;
+        }
+        .open .letter{
+            transform: translateY(-150px);
+            transition: transform 0.4s 0.6s ease, z-index 0.6s;
+            z-index: 2;
+        }
+        .hearts{
+            position: absolute;
+            top: 90px;
+            left: 0;
+            right: 0;
+            z-index: 2;
+        }
+        .heart{
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+        }
+        .heart::before, .heart::after{
+            position: absolute;
+            content: "";
+            left: 50px;
+            top: 0;
+            width: 50px;
+            height: 80px;
+            background-color: #d00000;
+            border-radius: 50px 50px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .heart::after{
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+        .close .heart{
+            opacity: 0;
+            animation: none;
+        }
+        .a1{
+            left: 20%;
+            transform: scale(0.6);
+            opacity: 1;
+            animation: animate 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+            animation-fill-mode: forwards;
+            animation-delay: 0.7s;
+        }
+        .a2{
+            left: 55%;
+            transform: scale(1);
+            opacity: 1;
+            animation: animate 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+            animation-fill-mode: forwards;
+            animation-delay: 0.7s;
+        }
+        .a3{
+            left: 10%;
+            transform: scale(0.8);
+            opacity: 1;
+            animation: animate 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+            animation-fill-mode: forwards;
+            animation-delay: 0.7s;
+        }
+        @keyframes animate{
+            0%{ top: 0; }
+            100%{ top: -600px; }
+        }
+        @keyframes sideSway{
+            0%{ margin-left: 0px; }
+            100%{ margin-left: 50px; }
+        }
+        body{
+            background-color: #fff5f7;
+        }
+        .evnelope-wrapper{
+            height: 380px;
+        }
+        .reset{
+            text-align: center;
+        }
+        .reset button{
+            font-weight: 800;
+            font-style: normal;
+            transition: all 0.1s linear;
+            --webkit-appearance: none;
+            background-color: transparent;
+            border: 2px solid #0077b2;
+            border-radius: 4px;
+            color: #0077b2;
+            display: inline-block;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin: 5px;
+            padding: 10px;
+            line-height: 1em;
+            text-decoration: none;
+            min-width: 120px;
+            outline: none;
+        }
+        .reset button:hover{
+            background-color: #0077b2;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="evnelope-wrapper">
+        <div id="evnelope" class="close">
+            <div class="front flap"></div>
+            <div class="front pocket"></div>
+
+<div class="letter">
+    <div class="words line1">
+        🎉 <span class="rainbow-text"><strong>HOUSEWARMCOOLING</strong></span> 🎉
+    </div>
+    <div class="words line2"><strong>wanneer?</strong> 8 november, vanaf 20u</div>
+    <div class="words line3"><strong>place to be?</strong> Pallo 91!</div>
+    <div class="words line4"><strong>meenemen?</strong> je goed humeur & feestbenen😁</div>
+    <div class="words line5">
+        <strong>💔 afwezig?</strong> op 21 november ben je heel welkom voor een<br>
+        culinaire fijnproeverij (frieten van de frituur)<br>
+        tussen 18u00-20u15!
+    </div>
+    <div class="words line6"><strong>xoxo,</strong></div>
+    <div class="words line7">anneke, ekke, en charlie</div>
+</div>
+
+
+            <div class="hearts">
+                <div class="heart a1"></div>
+                <div class="heart a2"></div>
+                <div class="heart a3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="reset">
+        <button id="open">Open</button>
+        <button id="close">Close</button>
+    </div>
+
+    <script>
+        // JS goes here
+        document.addEventListener("DOMContentLoaded", function(){
+            const envelope = document.getElementById("evnelope");
+            const btnOpen = document.getElementById("open");
+            const btnReset = document.getElementById("close");
+
+            function openEnvelope(){
+                envelope.classList.add("open");
+                envelope.classList.remove("close");
+            }
+
+            function closeEnvelope(){
+                envelope.classList.add("close");
+                envelope.classList.remove("open");
+            }
+
+            envelope.addEventListener("click", openEnvelope);
+            btnOpen.addEventListener("click", openEnvelope);
+            btnReset.addEventListener("click", closeEnvelope);
+        });
+    </script>
+</body>
+</html>
