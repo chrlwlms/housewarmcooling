@@ -12,7 +12,8 @@
         /* CSS goes here */
         #evnelope{
             position: relative;
-            width: 500px;
+            width: 90%;
+            max-width: 500px; 
             height: 320px;
             border-bottom-left-radius: 6px;
             border-bottom-right-radius: 6px;
@@ -25,6 +26,7 @@
         
         .evnelope-wrapper {
     margin-top: 100px; /* pushes everything down */
+    overflow-x: hidden;
 }
         .front{
             position: absolute;
@@ -275,11 +277,6 @@
                 <div class="heart a3"></div>
             </div>
         </div>
-    </div>
-
-    <div class="reset">
-        <button id="open">Open</button>
-        <button id="close">Close</button>
     </div>
 
     <script>
